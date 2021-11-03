@@ -1,34 +1,43 @@
 import React from 'react'
 import Style from './WeatherNowStyle'
+import dotenv from 'dotenv'
+import { WeatherNowContext } from '../../context/WeatherNowContext'
+import { useContext } from 'react'
+dotenv.config()
 const WeatherNow = () => {
+    const { weatherNowState } = useContext(WeatherNowContext)
     return (
         <Style>
             <div className="weather_now">
-                <div className="weather_city">Hà Nội</div>
+                <div className="weather_city">{weatherNowState.location}</div>
                 <div className="weather_temp">
                     <div className="weather_temp--img">
-                        <img src="" alt="" />
+                        <img src={weatherNowState.icon_url} />
                     </div>
                     <div className="weather_temp--C">
-                        30<sup>o</sup>
+                        {weatherNowState.temp_c}
+                        <sup>o</sup>
                     </div>
                     <div className="weather_temp--options">
-                        <button>C</button>
+                        <button className="active">C</button>
                         <button>F</button>
                     </div>
                 </div>
                 <div className="weather_details">
-                    <div className="weather_details--title">Mostly Cloudy</div>
+                    <div className="weather_details--title">
+                        {weatherNowState.condition}
+                    </div>
                     <div className="weather_details--more">
                         <div className="weather_details--more__item">
                             <p>
                                 Feel like:{' '}
                                 <span>
-                                    30<sup>o</sup>
+                                    {weatherNowState.feels_like_c}
+                                    <sup>o</sup>
                                 </span>
                             </p>
                         </div>
-                        <div className="weather_details--more__item">
+                        {/* <div className="weather_details--more__item">
                             <p>
                                 Max temp:{' '}
                                 <span>
@@ -43,28 +52,28 @@ const WeatherNow = () => {
                                     30<sup>o</sup>
                                 </span>
                             </p>
-                        </div>
+                        </div> */}
                         <div className="weather_details--more__item">
                             <p>
                                 Humidity:{' '}
-                                <span>
-                                    30<sup>o</sup>
-                                </span>
+                                <span>{weatherNowState.humidity}</span>
                             </p>
                         </div>
                         <div className="weather_details--more__item">
                             <p>
                                 Wind speed:{' '}
                                 <span>
-                                    30<sup>o</sup>
+                                    {weatherNowState.wind_mph}
+                                    <sup>mph</sup>
                                 </span>
                             </p>
                         </div>
                         <div className="weather_details--more__item">
                             <p>
-                                wind_degree:{' '}
+                                Wind degree:{' '}
                                 <span>
-                                    30<sup>o</sup>
+                                    {weatherNowState.wind_degree}
+                                    <sup>o</sup>
                                 </span>
                             </p>
                         </div>
