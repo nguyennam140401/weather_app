@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './App.css'
+import { Header } from './components/Header/Header'
+import { useEffect } from 'react'
+import Sunny from './assets/sunny.jpeg'
+import WeatherNow from './components/WeatherNow/WeatherNow'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        document.body.backgroundImage = Sunny
+    }, [])
+    return (
+        <div className="App">
+            <Header></Header>
+            <WeatherNow></WeatherNow>
+        </div>
+    )
 }
 
-export default App;
+export default App
