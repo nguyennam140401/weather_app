@@ -4,13 +4,17 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import WeatherDay from '../WeatherDay/WeatherDay'
+import { WeatherForecastContext } from '../../context/WeatherForecastContext'
+import { useContext } from 'react'
 const WeatherWeek = () => {
+    const { weatherForecastState } = useContext(WeatherForecastContext)
+
     var settings = {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 6,
+        slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
@@ -44,32 +48,14 @@ const WeatherWeek = () => {
             <Style>
                 <div className="title">Daily</div>
                 <Slider {...settings}>
-                    <div>
-                        <h3>1</h3>
-                    </div>
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                    <div>
-                        <h3>5</h3>
-                    </div>
-                    <div>
-                        <h3>6</h3>
-                    </div>
-                    <div>
-                        <h3>7</h3>
-                    </div>
-                    <div>
-                        <h3>8</h3>
-                    </div>
+                    {weatherForecastState.forecast &&
+                        weatherForecastState.forecast.map((item, idx) => {
+                            return (
+                                <WeatherDay key={idx} data={item}></WeatherDay>
+                            )
+                        })}
                 </Slider>
-                <WeatherDay></WeatherDay>
+                {/* <WeatherDay></WeatherDay> */}
             </Style>
         </div>
     )

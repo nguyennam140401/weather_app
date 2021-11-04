@@ -14,7 +14,7 @@
 body {
     font-family: 'Open Sans';
     min-height: 100vh;
-    background-image: url('./assets/sunny.jpeg');
+    /* background-image: url('./assets/sunny.jpeg'); */
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
