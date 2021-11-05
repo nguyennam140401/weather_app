@@ -3,6 +3,7 @@ export const Style = styled.div`
     .weather_day {
         &:hover {
             background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-15px);
         }
         background-color: transparent;
         padding: 1rem;

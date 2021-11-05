@@ -5,13 +5,16 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import WeatherNowContext from './context/WeatherNowContext'
 import WeatherForecastContext from './context/WeatherForecastContext'
+import WeatherContext from './context/WeatherContext'
 ReactDOM.render(
     <React.StrictMode>
-        <WeatherNowContext>
-            <WeatherForecastContext>
-                <App />
-            </WeatherForecastContext>
-        </WeatherNowContext>
+        <WeatherContext>
+            <WeatherNowContext>
+                <WeatherForecastContext>
+                    <App />
+                </WeatherForecastContext>
+            </WeatherNowContext>
+        </WeatherContext>
     </React.StrictMode>,
     document.getElementById('root')
 )

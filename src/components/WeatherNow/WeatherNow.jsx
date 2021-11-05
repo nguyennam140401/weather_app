@@ -3,24 +3,45 @@ import Style from './WeatherNowStyle'
 import dotenv from 'dotenv'
 import { WeatherNowContext } from '../../context/WeatherNowContext'
 import { useContext } from 'react'
+import { WeatherContext } from '../../context/WeatherContext'
 dotenv.config()
 const WeatherNow = () => {
     const { weatherNowState } = useContext(WeatherNowContext)
+    const {
+        weatherState: { isTempC },
+        changeTempC,
+        changeTempF,
+    } = useContext(WeatherContext)
     return (
         <Style>
             <div className="weather_now">
                 <div className="weather_city">{weatherNowState.location}</div>
                 <div className="weather_temp">
                     <div className="weather_temp--img">
-                        <img src={weatherNowState.icon_url} />
+                        <img
+                            src={weatherNowState.icon_url}
+                            alt="icon weather"
+                        />
                     </div>
                     <div className="weather_temp--C">
-                        {weatherNowState.temp_c}
+                        {isTempC
+                            ? weatherNowState.temp_c
+                            : weatherNowState.temp_f}
                         <sup>o</sup>
                     </div>
                     <div className="weather_temp--options">
-                        <button className="active">C</button>
-                        <button>F</button>
+                        <button
+                            className={`${isTempC ? 'active' : ''}`}
+                            onClick={changeTempC}
+                        >
+                            C
+                        </button>
+                        <button
+                            className={`${!isTempC ? 'active' : ''}`}
+                            onClick={changeTempF}
+                        >
+                            F
+                        </button>
                     </div>
                 </div>
                 <div className="weather_details">
@@ -37,26 +58,11 @@ const WeatherNow = () => {
                                 </span>
                             </p>
                         </div>
-                        {/* <div className="weather_details--more__item">
-                            <p>
-                                Max temp:{' '}
-                                <span>
-                                    30<sup>o</sup>
-                                </span>
-                            </p>
-                        </div>
-                        <div className="weather_details--more__item">
-                            <p>
-                                Min temp:{' '}
-                                <span>
-                                    30<sup>o</sup>
-                                </span>
-                            </p>
-                        </div> */}
+
                         <div className="weather_details--more__item">
                             <p>
                                 Humidity:{' '}
-                                <span>{weatherNowState.humidity}</span>
+                                <span>{weatherNowState.humidity} %</span>
                             </p>
                         </div>
                         <div className="weather_details--more__item">
